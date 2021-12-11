@@ -1,0 +1,12 @@
+{
+  "extends": ["eslint:recommended", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint/eslint-plugin"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {},
+  "env": {
+    "node": true
+  }
+}

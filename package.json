@@ -1,0 +1,60 @@
+{
+  "name": "@a9g/plop-generator-react-atomic-component",
+  "version": "0.0.1",
+  "description": "plop generator react atomic component",
+  "main": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "author": "André Hoendgen <hello@andre-hoendgen.de> (andre-hoendgen.de)",
+  "license": "MIT",
+  "repository": "https://github.com/ahoendgen/plop-generator-react-atomic-component",
+  "keywords": [
+    "node",
+    "typescript",
+    "eslint",
+    "prettier",
+    "jest",
+    "plop",
+    "plop-pack",
+    "plop-generator",
+    "react"
+  ],
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "tsc --watch",
+    "build": "tsc",
+    "postbuild": "cp -r src/templates dist/templates",
+    "pretest": "npm run lint && tsc --noEmit",
+    "format": "prettier --loglevel warn --write \"**/*.{ts,tsx,css,md,json}\"",
+    "posttest": "npm run format",
+    "prepare": "husky install",
+    "prepublishOnly": "rimraf dist && run-s build",
+    "lint": "eslint . --cache --fix --ext .ts,.tsx"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.6.0",
+    "@typescript-eslint/parser": "^5.6.0",
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.5.3"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,css,md,json,js}": "prettier --write"
+  },
+  "dependencies": {
+    "node-plop": "^0.30.0"
+  },
+  "volta": {
+    "node": "16.13.1",
+    "yarn": "1.22.17"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
