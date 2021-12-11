@@ -8,11 +8,8 @@
   "license": "MIT",
   "repository": "https://github.com/ahoendgen/plop-generator-react-atomic-component",
   "keywords": [
-    "node",
+    "atomic",
     "typescript",
-    "eslint",
-    "prettier",
-    "jest",
     "plop",
     "plop-pack",
     "plop-generator",
