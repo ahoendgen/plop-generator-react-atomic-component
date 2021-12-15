@@ -48,6 +48,32 @@ const defaultConfig = {
 atomicGenerator(plop, defaultConfig);
 ```
 
+so your `plopfile.js` could look e.g. like this
+
+```javascript
+const atomicGenerator =
+  require("@a9g/plop-generator-react-atomic-component").default;
+
+const defaultConfig = {
+  createIndex: true,
+  functional: true,
+  basePath: "src/ui/components",
+  withClassnameInterfaceImportPath: "/framework/ui", //make sure to configure this path
+  withStyleInterfaceImportPath: "/framework/ui",
+  tests: true,
+  stories: true,
+  styledComponents: true,
+  useNative: false, // native and macro can't be used together
+  useMacro: false
+};
+
+const config = plop => {
+  atomicGenerator(plop, defaultConfig);
+};
+
+module.exports = config;
+```
+
 Now you'll have access to the `atomic-component` generator as shown below.
 
 ```bash
