@@ -1,6 +1,7 @@
 import { NodePlopAPI } from "node-plop";
 import * as path from "path";
 import { GeneratorConfig } from "index";
+import * as fs from "fs";
 
 const atomicComponent = (
 	config: Partial<GeneratorConfig>,
@@ -93,56 +94,101 @@ const atomicComponent = (
 	const CURRENT_DIR = path.resolve(__dirname);
 
 	if (fullConfig.createIndex) {
+		let indexTemplateFile = CURRENT_DIR + "/templates/index.hbs";
+
+		if (fullConfig.templateIndex !== undefined) {
+			if (fs.existsSync(fullConfig.templateIndex)) {
+				indexTemplateFile = fullConfig.templateIndex;
+			}
+		}
+
 		actions.push({
 			type: "add",
 			path:
 				fullConfig.basePath +
 				"/{{pascalCase type }}//{{pascalCase name}}/index.ts",
-			templateFile: CURRENT_DIR + "/templates/index.hbs",
+			templateFile: indexTemplateFile,
 			data,
 		});
 	}
 
 	if (fullConfig.functional) {
+		let functionalTemplateFile =
+			CURRENT_DIR + "/templates/component_functional.hbs";
+
+		if (fullConfig.templateComponentFunctional !== undefined) {
+			if (fs.existsSync(fullConfig.templateComponentFunctional)) {
+				functionalTemplateFile = fullConfig.templateComponentFunctional;
+			}
+		}
 		actions.push({
 			type: "add",
 			path:
 				fullConfig.basePath +
 				"/{{pascalCase type }}/{{pascalCase name}}/{{pascalCase name}}.tsx",
-			templateFile: CURRENT_DIR + "/templates/component_functional.hbs",
+			templateFile: functionalTemplateFile,
 			data,
 		});
 	} else {
+		let classBasedTemplateFile =
+			CURRENT_DIR + "/templates/component_class_based.hbs";
+
+		if (fullConfig.templateComponentClassBased !== undefined) {
+			if (fs.existsSync(fullConfig.templateComponentClassBased)) {
+				classBasedTemplateFile = fullConfig.templateComponentClassBased;
+			}
+		}
 		actions.push({
 			type: "add",
 			path:
 				fullConfig.basePath +
 				"/{{pascalCase type }}/{{pascalCase name}}/{{pascalCase name}}.tsx",
-			templateFile: CURRENT_DIR + "/templates/component_class_based.hbs",
+			templateFile: classBasedTemplateFile,
 			data,
 		});
 	}
 
 	if (fullConfig.tests) {
+		let testTemplateFile = CURRENT_DIR + "/templates/test.hbs";
+
+		if (fullConfig.templateTest !== undefined) {
+			if (fs.existsSync(fullConfig.templateTest)) {
+				testTemplateFile = fullConfig.templateTest;
+			}
+		}
 		actions.push({
 			type: "add",
 			path:
 				fullConfig.basePath +
 				"/{{pascalCase type}}/{{pascalCase name}}/{{pascalCase name}}.test.tsx",
-			templateFile: CURRENT_DIR + "/templates/test.hbs",
+			templateFile: testTemplateFile,
 			data,
 		});
 	}
 
 	if (fullConfig.stories) {
+		let storyTemplateFile = CURRENT_DIR + "/templates/story.hbs";
+
+		if (fullConfig.templateStory !== undefined) {
+			if (fs.existsSync(fullConfig.templateStory)) {
+				storyTemplateFile = fullConfig.templateStory;
+			}
+		}
 		actions.push({
 			type: "add",
 			path:
 				fullConfig.basePath +
 				"/{{pascalCase type }}/{{pascalCase name}}/{{pascalCase name}}.stories.tsx",
-			templateFile: CURRENT_DIR + "/templates/story.hbs",
+			templateFile: storyTemplateFile,
 			data,
 		});
+	}
+	let stylesTemplateFile = CURRENT_DIR + "/templates/styles.hbs";
+
+	if (fullConfig.templateStyles !== undefined) {
+		if (fs.existsSync(fullConfig.templateStyles)) {
+			stylesTemplateFile = fullConfig.templateStyles;
+		}
 	}
 
 	actions.push({
@@ -150,7 +196,7 @@ const atomicComponent = (
 		path:
 			fullConfig.basePath +
 			"/{{pascalCase type }}/{{pascalCase name}}/{{pascalCase name}}.styles.ts",
-		templateFile: CURRENT_DIR + "/templates/styles.hbs",
+		templateFile: stylesTemplateFile,
 		data,
 	});
 

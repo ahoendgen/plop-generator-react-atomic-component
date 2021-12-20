@@ -13,6 +13,12 @@ export interface GeneratorConfig {
 	styledComponents: boolean;
 	useNative: boolean;
 	useMacro: boolean;
+	templateIndex?: string;
+	templateStory?: string;
+	templateStyles?: string;
+	templateTest?: string;
+	templateComponentFunctional?: string;
+	templateComponentClassBased?: string;
 }
 
 const generator = (

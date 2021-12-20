@@ -12,7 +12,7 @@ npm install --save-dev @a9g/plop-generator-react-atomic-component
 
 ## Usage
 
-First, create two interfaces to include classnames or styles (depending on if you are using react-native or not) to include them into your props.
+First, create two interfaces to include classnames or styles (depending on if you are using react-native or not) to include them into your props. h
 
 ```typescript
 import { StyleProp, ViewStyle } from "react-native";
@@ -63,7 +63,7 @@ const defaultConfig = {
   tests: true,
   stories: true,
   styledComponents: true,
-  useNative: false, // native and macro can't be used together
+  useNative: false,
   useMacro: false
 };
 
@@ -91,6 +91,29 @@ src
             ├── $ComponentName.stories.tsx (optional)
             ├── $ComponentName.styles.tsx (optional)
             └── index.tsx (optional)
+```
+
+## Configuration
+
+```typescript
+export interface GeneratorConfig {
+  createIndex: boolean; //create an index file
+  functional: boolean; //should the template be functional or class based?
+  basePath: string; //where do you want to store the generated files
+  withClassnameInterfaceImportPath: string; //from where can we import the classname interface
+  withStyleInterfaceImportPath: string; //from where can we import the styles interface
+  tests: boolean; //create test files
+  stories: boolean; //create story files
+  styledComponents: boolean; //use styled components
+  useNative: boolean; //use react native
+  useMacro: boolean; // use styled components macro import. native and macro can't be used together
+  templateIndex?: string; //path to the corresponding files, need to be an absolute path
+  templateStory?: string;
+  templateStyles?: string;
+  templateTest?: string;
+  templateComponentFunctional?: string;
+  templateComponentClassBased?: string;
+}
 ```
 
 ## Questions
