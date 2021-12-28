@@ -1,6 +1,6 @@
 # changelog
 
-## master
+## 0.0.2
 
 - changed keywords for npm package
 - introduced changelog
