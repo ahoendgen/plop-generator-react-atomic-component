@@ -1,10 +1,10 @@
-import React from 'react';{{> styleImport }}
+import React, { PropsWithChildren } from 'react';{{> styleImport }}
 {{> withClassNameImport }}
 
 {{ withClassNameProps }} {
 }
 
-const {{pascalCase name }} = (props: Props): React.ReactElement => {
+const {{pascalCase name }} : React.FC<Props> = (props: PropsWithChildren<Props>): React.ReactElement => {
   return (
     <{{ templateBaseComponent }} {{> withClassNameClassName }}data-testid={"{{kebabCase name }}-root"}>
       {{ name }}
