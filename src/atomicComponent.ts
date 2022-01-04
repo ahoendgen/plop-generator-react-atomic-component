@@ -49,6 +49,7 @@ const atomicComponent = (
 
 	let styledComponentsType = "styled-components";
 	let baseComponent = "div";
+	let testId = "data-testid";
 	let withClassNameClassName = `className={${
 		IS_FUNCTIONAL ? "" : "this."
 	}props.className} `;
@@ -62,6 +63,7 @@ const atomicComponent = (
 	if (IS_NATIVE) {
 		styledComponentsType = "styled-components/native";
 		baseComponent = "Text";
+		testId = "testID"
 		withClassNameClassName = `style={${
 			IS_FUNCTIONAL ? "" : "this."
 		}props.style} `;
@@ -81,12 +83,14 @@ const atomicComponent = (
 	}
 
 	data = {
-		templateBaseComponent,
-		withClassNameProps,
-		withClassNameClassName,
 		baseComponent,
 		styledComponentsType,
+		templateBaseComponent,
+		withClassNameClassName,
+		withClassNameProps,
+		testId,
 	};
+	plop.setPartial("testId", testId);
 	plop.setPartial("styleImport", styleImport);
 	plop.setPartial("withClassNameImport", withClassNameImport);
 	plop.setPartial("withClassNameClassName", withClassNameClassName);
