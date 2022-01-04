@@ -1,6 +1,6 @@
 {
   "name": "@a9g/plop-generator-react-atomic-component",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "plop generator react atomic component",
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
