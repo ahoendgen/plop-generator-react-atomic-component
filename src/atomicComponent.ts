@@ -63,7 +63,7 @@ const atomicComponent = (
 	if (IS_NATIVE) {
 		styledComponentsType = "styled-components/native";
 		baseComponent = "Text";
-		testId = "testID"
+		testId = "testID";
 		withClassNameClassName = `style={${
 			IS_FUNCTIONAL ? "" : "this."
 		}props.style} `;
@@ -83,6 +83,7 @@ const atomicComponent = (
 	}
 
 	data = {
+		styledComponents: fullConfig.styledComponents,
 		baseComponent,
 		styledComponentsType,
 		templateBaseComponent,
@@ -90,6 +91,7 @@ const atomicComponent = (
 		withClassNameProps,
 		testId,
 	};
+
 	plop.setPartial("testId", testId);
 	plop.setPartial("styleImport", styleImport);
 	plop.setPartial("withClassNameImport", withClassNameImport);
