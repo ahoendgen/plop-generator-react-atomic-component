@@ -53,7 +53,7 @@ const atomicComponent = (
 		IS_FUNCTIONAL ? "" : "this."
 	}props.className} `;
 	let withClassNameProps = "interface Props extends PropsWithClassName";
-	let withClassNameImport = `import {PropsWithClassName} from "${fullConfig.withClassnameInterfaceImportPath}";\n`;
+	let withClassNameImport = `import {PropsWithClassName} from '${fullConfig.withClassnameInterfaceImportPath}'`;
 
 	if (fullConfig.useMacro) {
 		styledComponentsType = "styled-components/macro";
@@ -66,10 +66,10 @@ const atomicComponent = (
 			IS_FUNCTIONAL ? "" : "this."
 		}props.style} `;
 		withClassNameProps = "interface Props extends PropsWithNativeStyle";
-		withClassNameImport = `import {PropsWithNativeStyle} from "${fullConfig.withStyleInterfaceImportPath}";\n`;
+		withClassNameImport = `import {PropsWithNativeStyle} from '${fullConfig.withStyleInterfaceImportPath}'`;
 	}
 
-	let styleImport = `\nimport {Root} from './{{pascalCase name}}.styles';`;
+	let styleImport = `import {Root} from './{{pascalCase name}}.styles'`;
 	let templateBaseComponent = "Root";
 
 	if (!WITH_STYLED_COMPONENTS) {
