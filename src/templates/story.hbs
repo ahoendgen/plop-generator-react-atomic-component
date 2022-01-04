@@ -1,4 +1,4 @@
-{{ componentImport }}
+import { {{ pascalCase name }} } from './{{ pascalCase name }}';
 
 const StorybookSettings = {
   title: 'Design System/{{ type }}s/{{ name }}'
@@ -6,4 +6,4 @@ const StorybookSettings = {
 
 export default StorybookSettings;
 
-export const Basic{{pascalCase name }} = () => <{{pascalCase name }} />;
+export const Basic{{ pascalCase name }} = () => <{{ pascalCase name }} />;

@@ -49,11 +49,12 @@ const atomicComponent = (
 
 	let styledComponentsType = "styled-components";
 	let baseComponent = "div";
+	let testId = "data-testid";
 	let withClassNameClassName = `className={${
 		IS_FUNCTIONAL ? "" : "this."
 	}props.className} `;
 	let withClassNameProps = "interface Props extends PropsWithClassName";
-	let withClassNameImport = `import {PropsWithClassName} from "${fullConfig.withClassnameInterfaceImportPath}";\n`;
+	let withClassNameImport = `import {PropsWithClassName} from '${fullConfig.withClassnameInterfaceImportPath}'`;
 
 	if (fullConfig.useMacro) {
 		styledComponentsType = "styled-components/macro";
@@ -62,14 +63,15 @@ const atomicComponent = (
 	if (IS_NATIVE) {
 		styledComponentsType = "styled-components/native";
 		baseComponent = "Text";
+		testId = "testID";
 		withClassNameClassName = `style={${
 			IS_FUNCTIONAL ? "" : "this."
 		}props.style} `;
 		withClassNameProps = "interface Props extends PropsWithNativeStyle";
-		withClassNameImport = `import {PropsWithNativeStyle} from "${fullConfig.withStyleInterfaceImportPath}";\n`;
+		withClassNameImport = `import {PropsWithNativeStyle} from '${fullConfig.withStyleInterfaceImportPath}'`;
 	}
 
-	let styleImport = `\nimport {Root} from './{{pascalCase name}}.styles';`;
+	let styleImport = `import {Root} from './{{pascalCase name}}.styles'`;
 	let templateBaseComponent = "Root";
 
 	if (!WITH_STYLED_COMPONENTS) {
@@ -81,12 +83,16 @@ const atomicComponent = (
 	}
 
 	data = {
-		templateBaseComponent,
-		withClassNameProps,
-		withClassNameClassName,
+		styledComponents: fullConfig.styledComponents,
 		baseComponent,
 		styledComponentsType,
+		templateBaseComponent,
+		withClassNameClassName,
+		withClassNameProps,
+		testId,
 	};
+
+	plop.setPartial("testId", testId);
 	plop.setPartial("styleImport", styleImport);
 	plop.setPartial("withClassNameImport", withClassNameImport);
 	plop.setPartial("withClassNameClassName", withClassNameClassName);
