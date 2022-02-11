@@ -42,7 +42,10 @@ const defaultConfig = {
   stories: true,
   styledComponents: true,
   useNative: false, // native and macro can't be used together
-  useMacro: false
+  useMacro: false,
+  typeFormatter: "pascaleCase",
+  fileNameFormatter: "pascaleCase",
+  dirNameFormatter: "pascaleCase"
 };
 
 atomicGenerator(plop, defaultConfig);
@@ -64,7 +67,10 @@ const defaultConfig = {
   stories: true,
   styledComponents: true,
   useNative: false,
-  useMacro: false
+  useMacro: false,
+  typeFormatter: "pascaleCase",
+  fileNameFormatter: "pascaleCase",
+  dirNameFormatter: "pascaleCase"
 };
 
 const config = plop => {
@@ -113,6 +119,21 @@ export interface GeneratorConfig {
   templateTest?: string;
   templateComponentFunctional?: string;
   templateComponentClassBased?: string;
+  typeFormatter?: FileNameFormatters;
+  fileNameFormatter?: FileNameFormatters;
+  dirNameFormatter?: FileNameFormatters;
+}
+```
+
+### FileNameFormatters
+
+```typescript
+export enum FileNameFormatters {
+  "pascalCase" = "pascalCase",
+  "camelCase" = "camelCase",
+  "kebabCase" = "kebabCase",
+  "snakeCase" = "snakeCase",
+  "lowerCase" = "lowerCase"
 }
 ```
 

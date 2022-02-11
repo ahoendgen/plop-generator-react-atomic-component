@@ -1,7 +1,23 @@
 const generator = require("./dist/index").default;
 
-const config = plop => {
-    generator(plop);
-}
+const defaultConfig = {
+	createIndex: true,
+	functional: true,
+	basePath: "src/ui/components",
+	withClassnameInterfaceImportPath: "/framework/ui", //make sure to configure this path
+	withStyleInterfaceImportPath: "/framework/ui",
+	tests: true,
+	stories: true,
+	styledComponents: true,
+	useNative: false,
+	useMacro: false,
+	typeFormatter: "pascaleCase",
+	fileNameFormatter: "pascaleCase",
+	dirNameFormatter: "lowerCase",
+};
 
-module.exports = config
+const config = (plop) => {
+	generator(plop, defaultConfig);
+};
+
+module.exports = config;

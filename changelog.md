@@ -1,5 +1,9 @@
 # changelog
 
+## work in progress
+
+- feat: make variable path name parts formatting configurable
+
 ## 0.0.3
 
 - fix: issue in index template due to hbs brackets

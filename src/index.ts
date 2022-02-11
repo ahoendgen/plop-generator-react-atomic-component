@@ -1,6 +1,7 @@
 import { NodePlopAPI } from "node-plop";
 
 import atomicComponent from "./atomicComponent";
+import { FileNameFormatters } from "./types";
 
 export interface GeneratorConfig {
 	createIndex: boolean;
@@ -19,6 +20,9 @@ export interface GeneratorConfig {
 	templateTest?: string;
 	templateComponentFunctional?: string;
 	templateComponentClassBased?: string;
+	typeFormatter?: FileNameFormatters;
+	fileNameFormatter?: FileNameFormatters;
+	dirNameFormatter?: FileNameFormatters;
 }
 
 const generator = (

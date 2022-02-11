@@ -1,7 +1,8 @@
 import { NodePlopAPI } from "node-plop";
 import * as path from "path";
-import { GeneratorConfig } from "index";
+import { GeneratorConfig } from "./index";
 import * as fs from "fs";
+import { FileNameFormatters } from "./types";
 
 const atomicComponent = (
 	config: Partial<GeneratorConfig>,
@@ -56,6 +57,35 @@ const atomicComponent = (
 	let withClassNameProps = "interface Props extends PropsWithClassName";
 	let withClassNameImport = `import {PropsWithClassName} from '${fullConfig.withClassnameInterfaceImportPath}'`;
 
+	let typeFormatter: FileNameFormatters = FileNameFormatters.pascalCase;
+	let dirNameFormatter: FileNameFormatters = FileNameFormatters.pascalCase;
+	let fileNameFormatter: FileNameFormatters = FileNameFormatters.pascalCase;
+
+	if (
+		fullConfig.typeFormatter &&
+		Object.values(FileNameFormatters).includes(fullConfig.typeFormatter)
+	) {
+		typeFormatter = fullConfig.typeFormatter;
+	}
+
+	if (
+		fullConfig.dirNameFormatter &&
+		Object.values(FileNameFormatters).includes(fullConfig.dirNameFormatter)
+	) {
+		dirNameFormatter = fullConfig.dirNameFormatter;
+	}
+
+	if (
+		fullConfig.fileNameFormatter &&
+		Object.values(FileNameFormatters).includes(fullConfig.fileNameFormatter)
+	) {
+		fileNameFormatter = fullConfig.fileNameFormatter;
+	}
+
+	let formattedType = `{{${typeFormatter} type}}`;
+	let formattedDirName = `{{${dirNameFormatter} name}}`;
+	let formattedFileName = `{{${fileNameFormatter} name}}`;
+
 	if (fullConfig.useMacro) {
 		styledComponentsType = "styled-components/macro";
 	}
@@ -71,7 +101,7 @@ const atomicComponent = (
 		withClassNameImport = `import {PropsWithNativeStyle} from '${fullConfig.withStyleInterfaceImportPath}'`;
 	}
 
-	let styleImport = `import {Root} from './{{pascalCase name}}.styles'`;
+	let styleImport = `import {Root} from './${formattedFileName}.styles'`;
 	let templateBaseComponent = "Root";
 
 	if (!WITH_STYLED_COMPONENTS) {
@@ -111,8 +141,7 @@ const atomicComponent = (
 		actions.push({
 			type: "add",
 			path:
-				fullConfig.basePath +
-				"/{{pascalCase type }}//{{pascalCase name}}/index.ts",
+				fullConfig.basePath + `/${formattedType}/${formattedDirName}/index.ts`,
 			templateFile: indexTemplateFile,
 			data,
 		});
@@ -131,7 +160,7 @@ const atomicComponent = (
 			type: "add",
 			path:
 				fullConfig.basePath +
-				"/{{pascalCase type }}/{{pascalCase name}}/{{pascalCase name}}.tsx",
+				`/${formattedType}/${formattedDirName}/${formattedFileName}.tsx`,
 			templateFile: functionalTemplateFile,
 			data,
 		});
@@ -148,7 +177,7 @@ const atomicComponent = (
 			type: "add",
 			path:
 				fullConfig.basePath +
-				"/{{pascalCase type }}/{{pascalCase name}}/{{pascalCase name}}.tsx",
+				`/${formattedType}/${formattedDirName}/${formattedFileName}.tsx`,
 			templateFile: classBasedTemplateFile,
 			data,
 		});
@@ -166,7 +195,7 @@ const atomicComponent = (
 			type: "add",
 			path:
 				fullConfig.basePath +
-				"/{{pascalCase type}}/{{pascalCase name}}/{{pascalCase name}}.test.tsx",
+				`/${formattedType}/${formattedDirName}/${formattedFileName}.test.tsx`,
 			templateFile: testTemplateFile,
 			data,
 		});
@@ -184,7 +213,7 @@ const atomicComponent = (
 			type: "add",
 			path:
 				fullConfig.basePath +
-				"/{{pascalCase type }}/{{pascalCase name}}/{{pascalCase name}}.stories.tsx",
+				`/${formattedType}/${formattedDirName}/${formattedFileName}.stories.tsx`,
 			templateFile: storyTemplateFile,
 			data,
 		});
@@ -201,7 +230,7 @@ const atomicComponent = (
 		type: "add",
 		path:
 			fullConfig.basePath +
-			"/{{pascalCase type }}/{{pascalCase name}}/{{pascalCase name}}.styles.ts",
+			`/${formattedType}/${formattedDirName}/${formattedFileName}.styles.ts`,
 		templateFile: stylesTemplateFile,
 		data,
 	});
