@@ -32,7 +32,13 @@ const atomicComponent = (
 		type: "list",
 		name: "type",
 		message: "component type",
-		choices: ["Atom", "Molecule", "Organism", "Template", "Page"],
+		choices: [
+			"Atoms",
+			"Molecules",
+			"Organisms",
+			"Templates",
+			"Page-Components",
+		],
 	});
 
 	prompts.push({
