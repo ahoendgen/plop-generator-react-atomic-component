@@ -9,7 +9,11 @@ const atomicComponent = (
 	plop: NodePlopAPI
 ) => {
 	const defaultConfig: GeneratorConfig = {
+<<<<<<< HEAD
 		additionalTemplates: false,
+=======
+		choices: ["Atoms", "Molecules", "Organisms", "Templates", "Pages"],
+>>>>>>> 1818e17 (Add config option for custom name choices)
 		createIndex: true,
 		createStyles: true,
 		functional: true,
@@ -34,7 +38,7 @@ const atomicComponent = (
 		type: "list",
 		name: "type",
 		message: "component type",
-		choices: ["Atom", "Molecule", "Organism", "Template", "Page"],
+		choices: fullConfig.choices,
 	});
 
 	prompts.push({
