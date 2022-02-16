@@ -11,6 +11,7 @@ const atomicComponent = (
 	const defaultConfig: GeneratorConfig = {
 		additionalTemplates: false,
 		createIndex: true,
+		createStyles: true,
 		functional: true,
 		basePath: "src/ui/components",
 		withClassnameInterfaceImportPath: "/framework/ui",
@@ -227,14 +228,16 @@ const atomicComponent = (
 		}
 	}
 
-	actions.push({
-		type: "add",
-		path:
-			fullConfig.basePath +
-			`/${formattedType}/${formattedDirName}/${formattedFileName}.styles.ts`,
-		templateFile: stylesTemplateFile,
-		data,
-	});
+	if (fullConfig.createStyles) {
+		actions.push({
+			type: "add",
+			path:
+				fullConfig.basePath +
+				`/${formattedType}/${formattedDirName}/${formattedFileName}.styles.ts`,
+			templateFile: stylesTemplateFile,
+			data,
+		});
+	}
 
 	if (fullConfig.additionalTemplates) {
 		fullConfig.additionalTemplates.forEach(({ extension, template }) => {

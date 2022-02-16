@@ -6,6 +6,7 @@ import { FileNameFormatters } from "./types";
 export interface GeneratorConfig {
 	additionalTemplates: { extension: string; template: string }[] | false;
 	createIndex: boolean;
+	createStyles: boolean;
 	functional: boolean;
 	basePath: string;
 	withClassnameInterfaceImportPath: string;
