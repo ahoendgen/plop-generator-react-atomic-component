@@ -32,7 +32,10 @@ const atomicComponent = (
 		type: "list",
 		name: "type",
 		message: "component type",
-		choices: ["Atom", "Molecule", "Organism", "Template", "Page"],
+		choices:
+			fullConfig.choices !== undefined
+				? ["Atoms", "Molecules", "Organisms", "Templates", "Pages"]
+				: fullConfig.choices,
 	});
 
 	prompts.push({
