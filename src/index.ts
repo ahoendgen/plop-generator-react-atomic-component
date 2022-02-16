@@ -5,6 +5,7 @@ import { FileNameFormatters } from "./types";
 
 export interface GeneratorConfig {
 	createIndex: boolean;
+	createStyles?: boolean;
 	functional: boolean;
 	basePath: string;
 	withClassnameInterfaceImportPath: string;
