@@ -10,6 +10,7 @@ const atomicComponent = (
 ) => {
 	const defaultConfig: GeneratorConfig = {
 		createIndex: true,
+		createStyles: true,
 		functional: true,
 		basePath: "src/ui/components",
 		withClassnameInterfaceImportPath: "/framework/ui",
@@ -232,14 +233,16 @@ const atomicComponent = (
 		}
 	}
 
-	actions.push({
-		type: "add",
-		path:
-			fullConfig.basePath +
-			`/${formattedType}/${formattedDirName}/${formattedFileName}.styles.ts`,
-		templateFile: stylesTemplateFile,
-		data,
-	});
+	if (fullConfig.createStyles) {
+		actions.push({
+			type: "add",
+			path:
+				fullConfig.basePath +
+				`/${formattedType}/${formattedDirName}/${formattedFileName}.styles.ts`,
+			templateFile: stylesTemplateFile,
+			data,
+		});
+	}
 
 	return {
 		description: "⚛ react component",
