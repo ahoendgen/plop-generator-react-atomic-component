@@ -9,6 +9,7 @@ const atomicComponent = (
 	plop: NodePlopAPI
 ) => {
 	const defaultConfig: GeneratorConfig = {
+		additionalTemplates: false,
 		choices: ["Atoms", "Molecules", "Organisms", "Templates", "Pages"],
 		createIndex: true,
 		createStyles: true,
@@ -236,6 +237,19 @@ const atomicComponent = (
 				`/${formattedType}/${formattedDirName}/${formattedFileName}.styles.ts`,
 			templateFile: stylesTemplateFile,
 			data,
+		});
+	}
+
+	if (fullConfig.additionalTemplates) {
+		fullConfig.additionalTemplates.forEach(({ name, extension }) => {
+			actions.push({
+				type: "add",
+				path:
+					fullConfig.basePath +
+					`/${formattedType}/${formattedDirName}/${formattedFileName}.${name}.${extension}`,
+				templateFile: CURRENT_DIR + `/templates/${name}.hbs`,
+				data,
+			});
 		});
 	}
 
