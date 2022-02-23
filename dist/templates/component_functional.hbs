@@ -1,0 +1,18 @@
+{{> withClassNameImport }};
+import React, { PropsWithChildren } from 'react';
+
+{{#if styledComponents}}
+{{> styleImport }};
+
+{{/if}}
+{{ withClassNameProps }} {}
+
+const {{ pascalCase name }}: React.FC<Props> = (props: PropsWithChildren<Props>): React.ReactElement => {
+  return (
+    <{{ templateBaseComponent }} {{> withClassNameClassName }} {{> testId }}={"{{kebabCase name }}-root"}>
+      {{ name }}
+    </{{ templateBaseComponent }}>
+  );
+}
+
+export { {{ pascalCase name }} }
