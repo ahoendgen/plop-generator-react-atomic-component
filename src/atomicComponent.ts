@@ -235,6 +235,21 @@ const atomicComponent = (
 		data,
 	});
 
+	if (fullConfig.additionalTemplates !== undefined) {
+		fullConfig.additionalTemplates.forEach(({ extension, template }) => {
+			if (fs.existsSync(template)) {
+				actions.push({
+					type: "add",
+					path:
+						fullConfig.basePath +
+						`/${formattedType}/${formattedDirName}/${formattedFileName}.${extension}`,
+					templateFile: template,
+					data,
+				});
+			}
+		});
+	}
+
 	return {
 		description: "⚛ react component",
 		prompts,
