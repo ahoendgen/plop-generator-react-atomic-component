@@ -9,6 +9,7 @@ const atomicComponent = (
 	plop: NodePlopAPI
 ) => {
 	const defaultConfig: GeneratorConfig = {
+		additionalTemplates: false,
 		createIndex: true,
 		functional: true,
 		basePath: "src/ui/components",
@@ -234,6 +235,19 @@ const atomicComponent = (
 		templateFile: stylesTemplateFile,
 		data,
 	});
+
+	if (fullConfig.additionalTemplates) {
+		fullConfig.additionalTemplates.forEach(({ extension, template }) => {
+			actions.push({
+				type: "add",
+				path:
+					fullConfig.basePath +
+					`/${formattedType}/${formattedDirName}/${formattedFileName}.${extension}`,
+				templateFile: template,
+				data,
+			});
+		});
+	}
 
 	return {
 		description: "⚛ react component",
