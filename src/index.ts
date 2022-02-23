@@ -4,6 +4,7 @@ import atomicComponent from "./atomicComponent";
 import { FileNameFormatters } from "./types";
 
 export interface GeneratorConfig {
+	choices?: string[];
 	createIndex: boolean;
 	functional: boolean;
 	basePath: string;
