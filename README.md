@@ -96,6 +96,7 @@ src
             ├── $ComponentName.test.tsx (optional)
             ├── $ComponentName.stories.tsx (optional)
             ├── $ComponentName.styles.tsx (optional)
+            ├── $ComponentName.custom.ts (optional see additionalTemplates)
             └── index.tsx (optional)
 ```
 
@@ -103,6 +104,7 @@ src
 
 ```typescript
 export interface GeneratorConfig {
+  additionalTemplates?: { extension: string; template: string }[]; //custom template extension eg. custom.ts, & template path to the corresponding files, need to be an absolute path
   createIndex: boolean; //create an index file
   functional: boolean; //should the template be functional or class based?
   basePath: string; //where do you want to store the generated files
