@@ -2,7 +2,7 @@
 
 ## work in progress
 
--
+- fix: fix join of classnames
 
 ## 0.0.4
 

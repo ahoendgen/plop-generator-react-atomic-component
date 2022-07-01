@@ -59,7 +59,7 @@ const atomicComponent = (
 		classNames.push("styles.root");
 	}
 
-	let withClassNameClassName = `className={[${classNames}].join()} `;
+	let withClassNameClassName = `className={[${classNames}].join(" ")} `;
 
 	if (WITH_STYLED_COMPONENTS) {
 		withClassNameClassName = `className={${classNames}} `;
