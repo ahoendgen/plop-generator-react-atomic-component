@@ -8,7 +8,7 @@ const defaultConfig = {
 	withStyleInterfaceImportPath: "/framework/ui",
 	tests: true,
 	stories: true,
-	styledComponents: true,
+	styledComponents: false,
 	useNative: false,
 	useMacro: false,
 	typeFormatter: "pascaleCase",

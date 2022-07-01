@@ -1,8 +1,10 @@
 # changelog
 
-## work in progress
+## 0.0.4
 
 - feat: make variable path name parts formatting configurable
+- fix: add `PropsWithChildren` to functional template
+- feat: BREAKING: non styled-component styles are scss modules now
 
 ## 0.0.3
 

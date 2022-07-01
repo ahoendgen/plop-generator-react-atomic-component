@@ -51,9 +51,20 @@ const atomicComponent = (
 	let styledComponentsType = "styled-components";
 	let baseComponent = "div";
 	let testId = "data-testid";
-	let withClassNameClassName = `className={${
-		IS_FUNCTIONAL ? "" : "this."
-	}props.className} `;
+
+	let classNames = [];
+	classNames.push(`${IS_FUNCTIONAL ? "" : "this."}props.className`);
+
+	if (!WITH_STYLED_COMPONENTS) {
+		classNames.push("styles.root");
+	}
+
+	let withClassNameClassName = `className={[${classNames}].join()} `;
+
+	if (WITH_STYLED_COMPONENTS) {
+		withClassNameClassName = `className={${classNames}} `;
+	}
+
 	let withClassNameProps = "interface Props extends PropsWithClassName";
 	let withClassNameImport = `import {PropsWithClassName} from '${fullConfig.withClassnameInterfaceImportPath}'`;
 
@@ -105,9 +116,11 @@ const atomicComponent = (
 	let templateBaseComponent = "Root";
 
 	if (!WITH_STYLED_COMPONENTS) {
-		styleImport = "";
+		styleImport = `import * as styles from './${formattedFileName}.module.scss'`;
+
 		templateBaseComponent = "div";
 		if (IS_NATIVE) {
+			styleImport = "";
 			templateBaseComponent = "Text";
 		}
 	}
@@ -219,6 +232,9 @@ const atomicComponent = (
 		});
 	}
 	let stylesTemplateFile = CURRENT_DIR + "/templates/styles.hbs";
+	if (WITH_STYLED_COMPONENTS) {
+		stylesTemplateFile = CURRENT_DIR + "/templates/stylesStyledComponents.hbs";
+	}
 
 	if (fullConfig.templateStyles !== undefined) {
 		if (fs.existsSync(fullConfig.templateStyles)) {
@@ -230,7 +246,9 @@ const atomicComponent = (
 		type: "add",
 		path:
 			fullConfig.basePath +
-			`/${formattedType}/${formattedDirName}/${formattedFileName}.styles.ts`,
+			`/${formattedType}/${formattedDirName}/${formattedFileName}.${
+				WITH_STYLED_COMPONENTS ? "styles.ts" : "module.scss"
+			}`,
 		templateFile: stylesTemplateFile,
 		data,
 	});
