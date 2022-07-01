@@ -1,6 +1,6 @@
 # changelog
 
-## work in progress
+## 0.0.5
 
 - fix: fix join of classnames
 
