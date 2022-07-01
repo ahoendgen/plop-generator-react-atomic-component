@@ -1,5 +1,9 @@
 # changelog
 
+## work in progress
+
+-
+
 ## 0.0.4
 
 - feat: make variable path name parts formatting configurable
