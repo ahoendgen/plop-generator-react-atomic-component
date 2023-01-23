@@ -103,6 +103,8 @@ src
 
 ```typescript
 export interface GeneratorConfig {
+  choices?: string[]; //modify the default atomic naming choices eg. ["Atom", "Molecule", "Organism", "Template", "Page"],
+
   createIndex: boolean; //create an index file
   functional: boolean; //should the template be functional or class based?
   basePath: string; //where do you want to store the generated files
